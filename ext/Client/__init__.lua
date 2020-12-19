@@ -53,6 +53,9 @@ Events:Subscribe(
 	"WeaponFiring:Update",
 	function(weaponFiring)
 		if first == true then
+			if weaponFiring.gunSway == nil then
+				return
+			end
 			gun = GunSwayData(weaponFiring.gunSway.data)
 			gun:MakeWritable()
 			deviationScaleFactorZoom = gun.deviationScaleFactorZoom
@@ -64,6 +67,9 @@ Events:Subscribe(
 			first = false
 		end
 		if activate then
+			if weaponFiring.gunSway == nil then
+				return
+			end
 			gun = GunSwayData(weaponFiring.gunSway.data)
 			gun:MakeWritable()
 			gun.deviationScaleFactorZoom = gun.deviationScaleFactorZoom * spreadDecrease
@@ -78,6 +84,9 @@ Events:Subscribe(
 			activate = false
 		end
 		if reset then
+			if weaponFiring.gunSway == nil then
+				return
+			end
 			gun = GunSwayData(weaponFiring.gunSway.data)
 			gun:MakeWritable()
 			gun.deviationScaleFactorZoom = deviationScaleFactorZoom
