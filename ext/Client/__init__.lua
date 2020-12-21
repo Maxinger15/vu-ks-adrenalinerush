@@ -3,7 +3,7 @@ local spreadDecrease = 0.65
 local recoilDecrease = 0.65
 --local reloadDecrese = 0.3
 
-local debug = true
+local debug = false
 local activate = false
 local reset = false
 local running = false
@@ -79,7 +79,7 @@ Events:Subscribe(
 
 			gun.shootingRecoilDecreaseScale = gun.shootingRecoilDecreaseScale * recoilDecrease
 			gun.firstShotRecoilMultiplier = gun.firstShotRecoilMultiplier * recoilDecrease
-
+			print("modified soldier")
 			--FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime = FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime * reloadDecrese
 			activate = false
 		end
@@ -96,7 +96,7 @@ Events:Subscribe(
 
 			gun.shootingRecoilDecreaseScale = shootingRecoilDecreaseScale
 			gun.firstShotRecoilMultiplier = firstShotRecoilMultiplier
-
+			print("Reseted Soldier")
 			--FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime = FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime / reloadDecrese
 			reset = false
 		end
