@@ -52,10 +52,12 @@ Events:Subscribe(
 Events:Subscribe(
 	"WeaponFiring:Update",
 	function(weaponFiring)
+		
 		if first == true then
 			if weaponFiring.gunSway == nil then
 				return
 			end
+			
 			gun = GunSwayData(weaponFiring.gunSway.data)
 			gun:MakeWritable()
 			deviationScaleFactorZoom = gun.deviationScaleFactorZoom
@@ -79,7 +81,6 @@ Events:Subscribe(
 
 			gun.shootingRecoilDecreaseScale = gun.shootingRecoilDecreaseScale * recoilDecrease
 			gun.firstShotRecoilMultiplier = gun.firstShotRecoilMultiplier * recoilDecrease
-			print("modified soldier")
 			--FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime = FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime * reloadDecrese
 			activate = false
 		end
@@ -96,7 +97,6 @@ Events:Subscribe(
 
 			gun.shootingRecoilDecreaseScale = shootingRecoilDecreaseScale
 			gun.firstShotRecoilMultiplier = firstShotRecoilMultiplier
-			print("Reseted Soldier")
 			--FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime = FireLogicData(FiringFunctionData(WeaponFiringData(weaponFiring.data).primaryFire).fireLogic).reloadTime / reloadDecrese
 			reset = false
 		end
@@ -112,6 +112,7 @@ Events:Subscribe(
 				reset = true
 				Events:Dispatch("Killstreak:Finished", curStep)
 				timer = ADRENALIN_DURATION
+				running = false
 			end
 		end
 	end
@@ -122,7 +123,10 @@ Events:Subscribe(
 	function(message)
 		-- weapon change
 		if message.type == 638585794 then
-			activate = true
+			if running then
+				activate = true
+			end
+			
 		end
 	end
 )
